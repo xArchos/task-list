@@ -1,19 +1,10 @@
 import React, { useState, ChangeEvent } from 'react';
 import TaskItem from './TaskItem';
 import { saveAs } from 'file-saver';
+import { useTasks } from './TaskContext';
 
-interface Task {
-  text: string;
-  completed: boolean;
-}
-
-interface TaskListProps {
-  tasks: Task[];
-  addTask: (task: Task) => void;
-  updateTasks: (tasks: Task[]) => void;
-}
-
-function TaskList({ tasks, addTask, updateTasks }: TaskListProps) {
+function TaskList() {
+  const { tasks, addTask, updateTasks, filterTasks, sortTasks } = useTasks();
   const [newTask, setNewTask] = useState('');
 
   const handleAddTask = () => {
@@ -62,6 +53,23 @@ function TaskList({ tasks, addTask, updateTasks }: TaskListProps) {
         placeholder="Add a new task"
       />
       <button onClick={handleAddTask}>Add Task</button>
+      <div>
+        <label>
+          Filter:
+          <select onChange={(e) => filterTasks(e.target.value as 'all' | 'completed' | 'incomplete')}>
+            <option value="all">All</option>
+            <option value="completed">Completed</option>
+            <option value="incomplete">Incomplete</option>
+          </select>
+        </label>
+        <label>
+          Sort:
+          <select onChange={(e) => sortTasks(e.target.value as 'date' | 'alphabetically')}>
+            <option value="date">By Date</option>
+            <option value="alphabetically">Alphabetically</option>
+          </select>
+        </label>
+      </div>
       {tasks.length > 0 ? (
         <ul>
           {tasks.map((task, index) => (
