@@ -1,4 +1,3 @@
-// src/hooks/useTasks.ts
 import { useState } from 'react';
 
 interface Task {

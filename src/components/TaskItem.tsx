@@ -1,6 +1,3 @@
-// src/components/TaskItem.tsx
-import React from 'react';
-
 interface TaskItemProps {
   task: {
     text: string;
