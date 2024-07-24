@@ -12,6 +12,7 @@ function FormPage() {
   const onSubmit: SubmitHandler<FormValues> = data => {
     console.log(data);
     console.log(JSON.stringify(data));
+    localStorage.setItem('formData', JSON.stringify(data));
   };
 
   return (
