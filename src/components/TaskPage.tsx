@@ -1,5 +1,5 @@
 import TaskList from '../components/TaskList';
-import useTasks from '../hooks/useTasks';
+import { useTasks } from '../components/TaskContext';
 
 function TaskPage() {
   const { tasks, addTask, updateTasks } = useTasks();
